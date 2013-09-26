@@ -1,0 +1,56 @@
+#!/usr/bin/ruby
+=begin
+Backup script to  mysql (table to table)
+
+ARVG[0] - host
+ARVG[1] - database
+ARGV[2] - retention
+=end
+
+require 'rubygems'
+require 'mysql2'
+require 'fileutils'
+
+# tems made class with
+require 'mysqlbackup'
+
+def usage
+  puts "\nusage: ./script_mysql_backup <host> <retention>\n\n"
+  puts "The better way is ./script_mysql_backup `hostname` <retention>\n\n"
+  exit
+end
+
+if ARGV[0] == nil || ARGV[1] == nil
+  usage
+end
+
+host = ARGV[0]
+retention = ARGV[1]
+
+time = Time.now
+date = time.strftime("%Y%m%d%H%M")
+user = 'root'
+pass = '<%= @root_pass -%>'
+dir = "<%= @backup_dir -%>/mysql/#{ARGV[0]}"
+$debug = false
+$optimize = false
+
+# Main
+client = Mysql2::Client.new(:host => 'localhost', :username => user, :password => pass)
+databases = client.query('show databases;')
+databases.each do |database|
+  db = database["Database"]
+  b = MysqlBackup.new(user, pass, dir, date, db)
+  client.query("use #{db}")
+  tables = client.query('show tables;')
+  tables.each do |table|
+    b.tableBackup(table["Tables_in_#{db}"])
+  end
+end
+
+Dir[dir + "/*"].map do |d|
+  r = File.dirname(d) + "/" + File.basename(d)
+  if File.mtime(r) < time - (60 * 60 * 24 * retention.to_i)
+    FileUtils.remove_dir(r, true)
+  end
+end
