@@ -15,7 +15,7 @@ Puppet manifest to install, configure and simple admin a standalone mysql server
 
 ##Requires:
 
-* Only works on Ubuntu
+* Works in Debian|Ubuntu|RedHat|CentOS
 * [hiera](http://docs.puppetlabs.com/hiera/1/index.html)
 * [augeas](http://projects.puppetlabs.com/projects/1/wiki/puppet_augeas)
 * Documentation
