@@ -1,6 +1,7 @@
 class mysql::params {
 
   $backup_dir      = hiera('backup_dir')
+  $mysql_root_user = hiera('mysql_root_user')
   $mysql_root_pass = hiera('mysql_root_pass')
 
   $mysql_server    = 'mysql-server'
