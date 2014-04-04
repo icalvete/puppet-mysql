@@ -22,6 +22,7 @@ Puppet manifest to install, configure and simple admin a standalone mysql server
 
 ##Examples:
 
+```puppet
     node 'os01.smartpurposes.net' inherits sp_defaults {
 
       include roles::puppet_agent
@@ -44,6 +45,7 @@ Puppet manifest to install, configure and simple admin a standalone mysql server
         require => Mysql::User[$puppet_dashboard_db_user]
       }
     }
+```
 
 ##TODO:
 
