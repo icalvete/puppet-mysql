@@ -2,12 +2,14 @@ define mysql::user (
 
   $user      = $name,
   $pass      = 'pass',
-  $root_user = $mysql::params::mysql_root_user,
-  $root_pass = $mysql::params::mysql_root_pass,
+  $root_user = $mysql::server::root_user,
+  $root_pass = $mysql::server::root_pass,
   $server    = 'localhost',
   $host      = 'localhost'
 
 ){
+
+  include mysql
 
   exec {"add_mysql_user_${name}":
     path    => '/usr/bin:/bin:/sbin',

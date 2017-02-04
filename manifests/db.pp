@@ -4,11 +4,13 @@ define mysql::db (
   $user       = 'root',
   $host       = 'localhost',
   $server     = 'localhost',
-  $root_user  = $mysql::params::mysql_root_user,
-  $root_pass  = $mysql::params::mysql_root_pass,
+  $root_user  = $mysql::server::root_user,
+  $root_pass  = $mysql::server::root_pass,
   $privileges = 'all privileges',
 
 ){
+  include mysql
+
   exec {
     "create_db_$name":
       path        => '/usr/bin:/bin:/sbin',

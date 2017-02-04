@@ -1,7 +1,8 @@
 class mysql::server::backup (
 
-  $root_pass  = $mysql::params::mysql_root_pass,
-  $backup_dir = $mysql::params::backup_dir,
+  $root_user  = $mysql::server::root_user,
+  $root_pass  = $mysql::server::root_pass,
+  $backup_dir = $mysql::server::backup_dir,
   $s3_backup  = false
 
 ) {

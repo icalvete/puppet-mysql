@@ -1,7 +1,8 @@
 class mysql::server (
 
-  $root_pass  = undef,
-  $backup_dir = undef,
+  $root_user  = $mysql::params::root_user,
+  $root_pass  = $mysql::params::root_pass,
+  $backup_dir = $mysql::params::backup_dir,
   $s3_backup  = false
 
 ) inherits mysql::params {
@@ -32,6 +33,7 @@ class mysql::server (
   }
 
   class {'server::backup':
+    root_user  => $root_user,
     root_pass  => $root_pass,
     backup_dir => $backup_dir,
     s3_backup  => $s3_backup,
