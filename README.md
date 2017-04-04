@@ -4,7 +4,7 @@ Puppet manifest to install, configure and simple admin a standalone mysql server
 
 [![Build Status](https://secure.travis-ci.org/icalvete/puppet-mysql.png)](http://travis-ci.org/icalvete/puppet-mysql)
 
-#Actions:
+# Actions:
 
 * Install server
 * Intall client
@@ -13,14 +13,14 @@ Puppet manifest to install, configure and simple admin a standalone mysql server
 * Load file with schema and data
 * Local backup
 
-##Requires:
+## Requires:
 
 * Works in Debian|Ubuntu|RedHat|CentOS
 * [hiera](http://docs.puppetlabs.com/hiera/1/index.html)
 * [augeas](http://projects.puppetlabs.com/projects/1/wiki/puppet_augeas)
 * https://github.com/icalvete/puppet-common
 
-##Examples:
+## Examples:
 
 ```puppet
     node 'os01.smartpurposes.net' inherits sp_defaults {
@@ -47,11 +47,11 @@ Puppet manifest to install, configure and simple admin a standalone mysql server
     }
 ```
 
-##TODO:
+## TODO:
 
 * Tunning mysql configuration.
 * Replication? (Maybe should use MMM http://mysql-mmm.org/).
 
-##Authors:
+## Authors:
 
 Israel Calvete Talavera <icalvete@gmail.com>
