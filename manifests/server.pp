@@ -3,7 +3,10 @@ class mysql::server (
   $root_user  = $mysql::params::root_user,
   $root_pass  = $mysql::params::root_pass,
   $backup_dir = $mysql::params::backup_dir,
-  $s3_backup  = false
+  $s3_backup  = false,
+  $id         = undef,
+  $log_bin    = $mysql::params::log_bin,
+  $relay_log  = $mysql::params::relay_log
 
 ) inherits mysql::params {
 
