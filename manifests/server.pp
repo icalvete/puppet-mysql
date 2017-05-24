@@ -6,7 +6,8 @@ class mysql::server (
   $s3_backup  = false,
   $id         = undef,
   $log_bin    = $mysql::params::log_bin,
-  $relay_log  = $mysql::params::relay_log
+  $relay_log  = $mysql::params::relay_log,
+  $mysql_conf = $mysql::params::mysql_conf
 
 ) inherits mysql::params {
 

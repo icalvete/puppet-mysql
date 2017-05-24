@@ -21,6 +21,9 @@ class mysql::params {
         /^(12.04|12.10|13.04)$/: {
           $mysql_conf = '/etc/mysql/my.cnf'
         }
+        /^14.04$/: {
+          $mysql_conf = '/etc/mysql/my.cnf'
+        }
         default: {
           $mysql_conf = '/etc/mysql/mysql.conf.d/mysqld.cnf'
         }
