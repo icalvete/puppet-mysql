@@ -12,39 +12,39 @@ class mysql::server (
 ) inherits mysql::params {
 
   anchor{'mysql::server:begin':
-    before => Class['server::install']
+    before => Class['mysql::server::install']
   }
 
-  class {'server::install':
+  class {'mysql::server::install':
     require => Anchor['mysql::server:begin']
   }
 
-  class {'server::config':
-    require => Class['server::install']
+  class {'mysql::server::config':
+    require => Class['mysql::server::install']
   }
 
-  class {'server::service':
-    subscribe => Class['server::config']
+  class {'mysql::server::service':
+    subscribe => Class['mysql::server::config']
   }
 
-  class {'server::postconfig':
+  class {'mysql::server::postconfig':
     root_pass => $root_pass,
-    require   => Class['server::service']
+    require   => Class['mysql::server::service']
   }
 
   class {'mysql::dev':
     require => Anchor['mysql::server:begin']
   }
 
-  class {'server::backup':
+  class {'mysql::server::backup':
     root_user  => $root_user,
     root_pass  => $root_pass,
     backup_dir => $backup_dir,
     s3_backup  => $s3_backup,
-    require    => Class['server::postconfig', 'mysql::dev']
+    require    => Class['mysql::server::postconfig', 'mysql::dev']
   }
 
   anchor{'mysql::server:end':
-    require => Class['server::backup']
+    require => Class['mysql::server::backup']
   }
 }
