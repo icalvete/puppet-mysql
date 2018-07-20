@@ -16,9 +16,12 @@ define mysql::db (
       path        => '/usr/bin:/bin:/sbin',
       command     => "mysqladmin -u${root_user} -p$root_pass -h \"$server\" create \"$db\"",
       unless      => "mysql -u${root_user} -p$root_pass -h \"$server\" -e 'use $db'";
-
-    "set_privileges_$db":
-      path        => '/usr/bin:/bin:/sbin',
-      command     => "mysql -u${root_user} -p$root_pass -h $server -e \"grant $privileges on $db.* to '$user'@'$host'\"",
+  }
+  if $user != 'root' {
+    exec {
+      "set_privileges_$db":
+        path        => '/usr/bin:/bin:/sbin',
+        command     => "mysql -u${root_user} -p$root_pass -h $server -e \"grant $privileges on $db.* to '$user'@'$host'\"",
+    }
   }
 }
