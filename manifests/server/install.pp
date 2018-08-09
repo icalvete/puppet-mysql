@@ -1,5 +1,14 @@
 class mysql::server::install {
 
+  case $mysql::server::version {
+    "7": {
+      $mysql_server = "${mysql::params::mysql_server}-5.7"
+    }
+    default: {
+      $mysql_server = $mysql::params::mysql_server
+    }
+  }
+
   package {$mysql::params::mysql_server:
     ensure => present
   }

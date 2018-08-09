@@ -1,8 +1,9 @@
 class mysql::params {
 
-  $backup_dir   = hiera('backup_dir', '/srv/backup')
-  $root_user    = hiera('mysql_root_user', 'root')
-  $root_pass    = hiera('mysql_root_pass', 'mysql')
+  $version    = '5'
+  $backup_dir = hiera('backup_dir', '/srv/backup')
+  $root_user  = hiera('mysql_root_user', 'root')
+  $root_pass  = hiera('mysql_root_pass', 'mysql')
 
   $mysql_server = 'mysql-server'
   $mysql_client = 'mysql-client'

@@ -1,5 +1,6 @@
 class mysql::server (
 
+  $version    = $mysql::params::version,
   $root_user  = $mysql::params::root_user,
   $root_pass  = $mysql::params::root_pass,
   $backup_dir = $mysql::params::backup_dir,
