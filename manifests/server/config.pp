@@ -5,6 +5,11 @@ class mysql::server::config {
     changes => "set target[. = 'mysqld']/bind-address 0.0.0.0",
   }
 
+  exec{ 'set_mysql_conf_exec':
+      command => "/bin/sed -i -e \"s/127.0.0.1/0.0.0.0/\" ${mysql::server::mysql_conf}",
+      unless  => "/bin/grep '0.0.0.0' ${mysql::server::mysql_conf}"
+  }
+
   if $mysql::server::id {
 
     if ! is_integer($mysql::server::id) {
