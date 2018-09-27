@@ -1,7 +1,7 @@
-class mysql::client inherits mysql::params (
-  
-  $version = $mysql::params::version,
-){
+class mysql::client (
 
-  include client::install
+  $version = $mysql::params::version,
+) inherits mysql::params  {
+
+  include mysql::client::install
 }
