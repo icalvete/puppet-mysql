@@ -23,6 +23,10 @@ class mysql::server::postconfig (
             provider => 'shell',
             onlyif   => '/usr/bin/mysql -uroot -h localhost',
           }
+          exec {'setup_mysql_remote_root_pass':
+            command  => "echo \"GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '${root_pass}' WITH GRANT OPTION;\" | /usr/bin/mysql -uroot -h localhost",
+            provider => 'shell',
+          }
         }
       }
     }

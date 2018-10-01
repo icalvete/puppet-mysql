@@ -5,9 +5,19 @@ class mysql::server::config {
     changes => "set target[. = 'mysqld']/bind-address 0.0.0.0",
   }
 
+  augeas{'set_mysql_conf2' :
+    context => "/files/${mysql::server::mysql_conf}",
+    changes => "set target[. = 'mysqld']/max_allowed_packet 32M",
+  }
+
   exec{ 'set_mysql_conf_exec':
       command => "/bin/sed -i -e \"s/127.0.0.1/0.0.0.0/\" ${mysql::server::mysql_conf}",
       unless  => "/bin/grep '0.0.0.0' ${mysql::server::mysql_conf}"
+  }
+
+  exec{ 'set_mysql_conf_exec2':
+      command => "/bin/sed -i -e \"s/max_allowed_packet.*/max_allowed_packet=32M/\" ${mysql::server::mysql_conf}",
+      unless  => "/bin/grep 'max_allowed_packet=32M' ${mysql::server::mysql_conf}"
   }
 
   if $mysql::server::id {
