@@ -50,7 +50,10 @@ Puppet manifest to install, configure and simple admin a standalone mysql server
 ## TODO:
 
 * Tunning mysql configuration.
-* Replication? (Maybe should use MMM http://mysql-mmm.org/).
+* Replication?
+  
+  (Maybe should use MMM http://mysql-mmm.org/).
+  https://github.com/icalvete/puppet-mysql_mmm
 
 ## Authors:
 
