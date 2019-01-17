@@ -7,7 +7,7 @@ class mysql::server::config {
 
   augeas{'set_mysql_conf2' :
     context => "/files/${mysql::server::mysql_conf}",
-    changes => "set target[. = 'mysqld']/max_allowed_packet 32M",
+    changes => "set target[. = 'mysqld']/max_allowed_packet ${mysql::server::max_allowed_packet}M",
   }
 
   exec{ 'set_mysql_conf_exec':
@@ -16,8 +16,8 @@ class mysql::server::config {
   }
 
   exec{ 'set_mysql_conf_exec2':
-      command => "/bin/sed -i -e \"s/max_allowed_packet.*/max_allowed_packet=32M/\" ${mysql::server::mysql_conf}",
-      unless  => "/bin/grep 'max_allowed_packet=32M' ${mysql::server::mysql_conf}"
+      command => "/bin/sed -i -e \"s/max_allowed_packet.*/max_allowed_packet=${mysql::server::max_allowed_packet}M/\" ${mysql::server::mysql_conf}",
+      unless  => "/bin/grep 'max_allowed_packet=${mysql::server::max_allowed_packet}M' ${mysql::server::mysql_conf}"
   }
 
   if $mysql::server::id {

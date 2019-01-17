@@ -1,14 +1,15 @@
 class mysql::server (
 
-  $version    = $mysql::params::version,
-  $root_user  = $mysql::params::root_user,
-  $root_pass  = $mysql::params::root_pass,
-  $backup_dir = $mysql::params::backup_dir,
-  $s3_backup  = false,
-  $id         = undef,
-  $log_bin    = $mysql::params::log_bin,
-  $relay_log  = $mysql::params::relay_log,
-  $mysql_conf = $mysql::params::mysql_conf
+  $version            = $mysql::params::version,
+  $root_user          = $mysql::params::root_user,
+  $root_pass          = $mysql::params::root_pass,
+  $backup_dir         = $mysql::params::backup_dir,
+  $s3_backup          = false,
+  $id                 = undef,
+  $log_bin            = $mysql::params::log_bin,
+  $relay_log          = $mysql::params::relay_log,
+  $mysql_conf         = $mysql::params::mysql_conf,
+  $max_allowed_packet = $mysql::params::max_allowed_packet
 
 ) inherits mysql::params {
 

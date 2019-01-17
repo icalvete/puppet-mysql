@@ -8,8 +8,9 @@ class mysql::params {
   $mysql_server = 'mysql-server'
   $mysql_client = 'mysql-client'
 
-  $log_bin      = '/var/log/mysql/mysql-bin.log'
-  $relay_log    = '/var/log/mysql/mysql-relay-bin'
+  $log_bin            = '/var/log/mysql/mysql-bin.log'
+  $relay_log          = '/var/log/mysql/mysql-relay-bin'
+  $max_allowed_packet = 32
 
   case $::operatingsystem {
     /^(Debian|Ubuntu)$/: {
